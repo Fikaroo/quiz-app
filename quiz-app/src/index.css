@@ -7,7 +7,7 @@
 @layer base {
   html {
     font-family: "Poppins", sans-serif;
-    @apply scroll-auto;
+    @apply scroll-smooth scroll-pt-8;
   }
   button {
     @apply focus:!ring-transparent;

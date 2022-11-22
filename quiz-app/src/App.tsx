@@ -4,7 +4,7 @@ import Exam from "./pages/Exam";
 
 const App = () => {
   return (
-    <div className="w-full min-h-screen text-slate-900 bg-cool-gray-50 ">
+    <div className="w-full min-h-screen text-slate-900 bg-cool-gray-50">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryId" element={<Category />} />

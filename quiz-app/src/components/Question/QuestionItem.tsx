@@ -1,31 +1,42 @@
 import { Label, Radio } from "flowbite-react";
 import { useState } from "react";
 
-interface IQuestionItemProps {
+export interface IQuestionItemProps {
   data: QuestionItemProps;
+  isSubmit: boolean;
 }
 
-type QuestionItemProps = {
+export type QuestionItemProps = {
   id: number;
   question: string;
   answers: { id: number; answer: string; correct: boolean }[];
 };
 
-const QuestionItem = ({ data }: IQuestionItemProps) => {
-  const [checked, setChecked] = useState(false);
+const QuestionItem = ({ data, isSubmit }: IQuestionItemProps) => {
   return (
-    <div>
-      <h3>Question: {data.question}</h3>{" "}
+    <div
+      id={data.id.toString()}
+      className="bg-white shadow-md py-8 px-8 rounded-md"
+    >
+      <h3 className="text-xl">
+        {data.id}) {data.question}
+      </h3>
       {data.answers.map((answer) => (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 p-4" key={answer.id}>
           <Radio
             id={data.id.toString()}
             name={data.id.toString()}
-            value={answer.answer}
-            checked={checked}
-            onChange={(e) => setChecked(!checked)}
+            value={answer.correct.toString()}
+            className="cursor-pointer disabled:bg-opacity-60 checked:!bg-sky-600 disabled:cursor-not-allowed disabled:bg-slate-400"
+            disabled={isSubmit}
           />
-          <Label>{answer.answer}</Label>
+          <Label
+            className={`text-base ${
+              answer.correct && "text-green-400"
+            } checked:text-red-400`}
+          >
+            {answer.answer}
+          </Label>
         </div>
       ))}
     </div>
